@@ -2,6 +2,7 @@
   "name": "postcss-light-dark",
   "version": "0.0.1",
   "main": "lib/index.js",
+  "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.199",
     "postcss": "^8.4.31",
