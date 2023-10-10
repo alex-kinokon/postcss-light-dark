@@ -18,13 +18,15 @@ const plugin = (): Plugin => {
             name: "media",
             params: "(prefers-color-scheme: dark)",
           }).append(new Rule({ selector })),
-        ] as const
+        ]
       })
 
       function transpileLightDark(decl: Declaration) {
         const [lightValue, darkValue] = decl.value
           .slice(PREFIX.length, -SUFFIX.length)
           .split(/\s*,\s*/)
+
+        if (!lightValue || !darkValue) return []
 
         const rules = getMediaQueryRules((decl.parent as Rule).selector)
         ;(rules[0].first as Rule).append(decl.clone({ value: lightValue }))
@@ -47,10 +49,8 @@ const plugin = (): Plugin => {
 
         if (lightDarkDeclarations.length) {
           for (const decl of lightDarkDeclarations) {
-            const [lightRule, darkRule] = transpileLightDark(decl)
-
-            rule.before(lightRule)
-            rule.before(darkRule)
+            const newRules = transpileLightDark(decl)
+            rule.before(newRules)
 
             decl.remove()
           }
