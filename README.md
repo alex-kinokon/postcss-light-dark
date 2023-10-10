@@ -13,6 +13,11 @@ body {
 ```
 
 ```ts
+// yarn add git@github.com:alex-kinokon/postcss-light-dark.git
+import plugin from "postcss-light-dark"
+
+const cssString = `/* ... */`
+
 await postcss(plugin()).process(cssString, { from: undefined })
 ```
 
