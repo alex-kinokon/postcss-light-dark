@@ -8,7 +8,8 @@ A PostCSS plugin that implements the [light-dark() function](https://www.bram.us
 body {
   background: light-dark(#333, #ccc);
   color: light-dark(#fff, #000);
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: Helvetica Neue, sans-serif;
+  box-shadow: 0 0 10px light-dark(#000, #fff);
 }
 ```
 
@@ -24,18 +25,23 @@ await postcss(plugin()).process(cssString, { from: undefined })
 ```css
 /* Output */
 @media (prefers-color-scheme: light) {
-  body {
-    background: #333;
-    color: #fff;
+  :root {
+    --switch-czcspu: #333;
+    --switch-pcxsp: #fff;
+    --switch-1okt5xw: #000;
   }
 }
 @media (prefers-color-scheme: dark) {
-  body {
-    background: #ccc;
-    color: #000;
+  :root {
+    --switch-czcspu: #ccc;
+    --switch-pcxsp: #000;
+    --switch-1okt5xw: #fff;
   }
 }
 body {
-  font-family: "Helvetica Neue", sans-serif;
+  background: var(--switch-czcspu);
+  color: var(--switch-pcxsp);
+  font-family: Helvetica Neue, sans-serif;
+  box-shadow: 0 0 10px var(--switch-1okt5xw);
 }
 ```

@@ -1,4 +1,4 @@
-import { Plugin } from "postcss";
+import { type Plugin } from "postcss";
 declare const plugin: {
     (): Plugin;
     postcss: boolean;

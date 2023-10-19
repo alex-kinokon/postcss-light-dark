@@ -12,6 +12,7 @@
     "postcss": "^8.4.31"
   },
   "dependencies": {
+    "@emotion/hash": "^0.9.1",
     "lodash": "^4.17.21"
   }
 }
